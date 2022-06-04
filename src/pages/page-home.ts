@@ -2,7 +2,6 @@ import {css, html} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
 
 import {AppElement} from '../app-debt/app-element';
-import '../elements/test-element';
 
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
@@ -42,9 +41,6 @@ export class PageHome extends AppElement {
   }
 
   override render(): TemplateResult {
-    return html`
-      <h1>Page Home</h1>
-      <test-element></test-element>
-    `;
+    return html` <h1>صفحه خانه</h1> `;
   }
 }

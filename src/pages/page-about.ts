@@ -42,6 +42,6 @@ export class PageAbout extends AppElement {
   }
 
   protected override render(): TemplateResult {
-    return html`<h1>Page About</h1>`;
+    return html`<h1>صفحه درباره</h1>`;
   }
 }
