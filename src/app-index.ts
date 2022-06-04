@@ -1,12 +1,8 @@
 import {router} from '@alwatr/router';
-import {SignalInterface} from '@alwatr/signal';
-import {css, html, nothing} from 'lit';
+import {css, html} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
-import {state} from 'lit/decorators/state.js';
-import {classMap} from 'lit/directives/class-map.js';
 
 import {AppElement} from './app-debt/app-element';
-import {mainNavigation} from './config';
 
 import './pages/page-home';
 import './pages/page-about';
@@ -42,38 +38,12 @@ export class AppIndex extends AppElement {
       flex-shrink: 1;
       flex-basis: 0%;
     }
-
-    nav {
-      display: flex;
-      padding: 12px 16px;
-      background-color: #333;
-    }
-
-    nav .nav__item {
-      padding: 8px;
-      color: #fff;
-      transition: color 256ms ease, background-color 256ms ease;
-      border-radius: 4px;
-      text-decoration:none;
-    }
-
-    nav .nav__item.active {
-      transition: color 256ms 128ms ease, background-color 256ms 128ms ease;
-      background-color: #fff;
-      color: #000;
-    }
   `;
 
   constructor() {
     super();
     router.initial();
   }
-
-  @state()
-  protected _hideNavigation = true;
-
-  protected _hideNavigationSignal = new SignalInterface('hide-navigation');
-
   protected _activePage = 'home';
 
   protected _routes: RoutesConfig = {
@@ -103,11 +73,7 @@ export class AppIndex extends AppElement {
             },
             {receivePrevious: true},
         ),
-        this._hideNavigationSignal.addListener((_hideNavigation) => {
-          this._hideNavigation = _hideNavigation;
-        }),
     );
-    this._hideNavigationSignal.dispatch(false); // @TODO: make signal file and base config
   }
 
   override disconnectedCallback(): void {
@@ -117,23 +83,7 @@ export class AppIndex extends AppElement {
 
   override render(): TemplateResult {
     return html`
-      ${this._renderNavigation()}
       <main class="page-container">${router.outlet(this._routes)}</main>
     `;
-  }
-
-  protected _renderNavigation(): TemplateResult | typeof nothing {
-    if (this._hideNavigation) return nothing;
-
-    const listTemplate = mainNavigation.map((item) => {
-      const selected = this._activePage === item.id;
-      return html`
-        <a href="${router.makeUrl({sectionList: [item.id]})}" class="nav__item ${classMap({active: selected})}">
-          <span class="nav__item-text">${item.title}</span>
-        </a>
-      `;
-    });
-
-    return html`<nav>${listTemplate}</nav>`;
   }
 }
