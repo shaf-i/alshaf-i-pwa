@@ -1,0 +1,25 @@
+{
+  "short_name": "Alshaf-i-PWA-Starter",
+  "name": "Alshaf-i",
+  "description": "An Alshaf-i Progressive Web Application Starter",
+  "start_url": "/?pwa",
+  "display": "standalone",
+  "theme_color": "#3277b9",
+  "background_color": "#3277b9",
+  "orientation": "portrait",
+  "default_locale": "en",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
