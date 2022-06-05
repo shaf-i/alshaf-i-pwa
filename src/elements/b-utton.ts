@@ -14,7 +14,7 @@ import type {TemplateResult} from 'lit';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'b-utton': TestElement;
+    'b-utton': Button;
   }
 }
 
@@ -25,7 +25,7 @@ declare global {
  * ```
  */
 @customElement('b-utton')
-export class TestElement extends AppElement {
+export class Button extends AppElement {
   static override styles = css`
     :host {
       display: inline-flex;
