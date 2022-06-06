@@ -36,6 +36,7 @@ export class Button extends AppElement {
       --base-color: var(--primary-color);
       --base-color-contrast: var(--primary-color-contrast);
     }
+
     button {
       display: flex;
       align-items: center;
@@ -72,7 +73,7 @@ export class Button extends AppElement {
         @touchcancel="${this.handleRippleDeactivate}"
         type="button"
       >
-        ${this.renderRipple()}
+        ${this.renderRippleTemplate()}
         <slot name="start"></slot>
         <slot></slot>
         <slot name="end"></slot>
@@ -85,7 +86,7 @@ export class Button extends AppElement {
     return this.ripple;
   });
 
-  protected renderRipple(): TemplateResult | typeof nothing {
+  protected renderRippleTemplate(): TemplateResult | typeof nothing {
     if (!this.shouldRenderRipple) return nothing;
 
     return html`<mwc-ripple ?disabled="${this.disabled}"></mwc-ripple>`;
