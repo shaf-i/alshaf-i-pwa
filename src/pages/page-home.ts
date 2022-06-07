@@ -2,7 +2,6 @@ import {css, html} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
 
 import {AppElement} from '../app-debt/app-element';
-import '../elements/p-rogress';
 
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
