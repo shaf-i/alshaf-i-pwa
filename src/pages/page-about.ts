@@ -12,7 +12,6 @@ declare global {
   }
 }
 
-
 /**
  * APP PWA About Page Element
  *
