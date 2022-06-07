@@ -82,8 +82,6 @@ export class AppIndex extends AppElement {
   }
 
   override render(): TemplateResult {
-    return html`
-      <main class="page-container">${router.outlet(this._routes)}</main>
-    `;
+    return html` <main class="page-container">${router.outlet(this._routes)}</main> `;
   }
 }
