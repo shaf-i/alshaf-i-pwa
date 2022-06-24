@@ -32,6 +32,7 @@ export class Button extends AppElement {
       width: max-content;
       box-sizing: border-box;
       padding: var(--gap, 4px 8px 12px);
+      overflow: hidden;
 
       --base-color: var(--primary-color);
       --base-color-contrast: var(--primary-color-contrast);
@@ -66,9 +67,6 @@ export class Button extends AppElement {
     return html`
       <button
         @mousedown="${this.handleRippleActivate}"
-        @mouseenter="${this.handleRippleMouseEnter}"
-        @mouseleave="${this.handleRippleMouseLeave}"
-        @touchstart="${this.handleRippleActivate}"
         @touchend="${this.handleRippleDeactivate}"
         @touchcancel="${this.handleRippleDeactivate}"
         type="button"
@@ -106,13 +104,5 @@ export class Button extends AppElement {
 
   protected handleRippleDeactivate(): void {
     this.rippleHandlers.endPress();
-  }
-
-  protected handleRippleMouseEnter(): void {
-    this.rippleHandlers.startHover();
-  }
-
-  protected handleRippleMouseLeave(): void {
-    this.rippleHandlers.endHover();
   }
 }
