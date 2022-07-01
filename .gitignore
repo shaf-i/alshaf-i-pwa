@@ -11,25 +11,15 @@ Thumbs.db
 Desktop.ini
 
 # Logs
-*.log*
+**/*.log*
 
 # Build
-dist
-.tsbuildinfo
-src/**/*.js
-src/**/*.map
-src/**/*.d.ts
+packages/**/dist
+packages/**/.tsbuildinfo
+packages/**/src/**/*.js
+packages/**/src/**/*.map
+packages/**/src/**/*.d.ts
 
 # Dependencies
-node_modules
-package-lock.json
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env
-.env.test
+**/node_modules
+**/package-lock.json
