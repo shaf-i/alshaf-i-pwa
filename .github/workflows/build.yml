@@ -2,7 +2,11 @@ name: Build
 
 on:
   pull_request:
+    paths:
+      - "packages/**/*.ts"
   push:
+    paths:
+      - "packages/**/*.ts"
     branches:
       - next
       - main
@@ -24,4 +28,4 @@ jobs:
           cache: 'yarn'
 
       - run: yarn install --frozen-lockfile
-      - run: yarn build:ts
+      - run: yarn build

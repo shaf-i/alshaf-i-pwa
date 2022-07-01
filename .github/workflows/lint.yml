@@ -2,7 +2,13 @@ name: Lint
 
 on:
   pull_request:
+    paths:
+      - "**/*.{ts,md,html,json}"
+      - "*.{md,json}"
   push:
+    paths:
+      - "**/*.{ts,md,html,json}"
+      - "*.{md,json}"
     branches:
       - next
       - main
@@ -24,4 +30,4 @@ jobs:
           cache: 'yarn'
 
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
+      - run: yarn format
