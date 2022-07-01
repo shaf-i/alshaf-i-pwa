@@ -23,3 +23,6 @@ packages/**/src/**/*.d.ts
 # Dependencies
 **/node_modules
 **/package-lock.json
+
+# lerna
+**/*.lerna_backup
