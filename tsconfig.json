@@ -12,8 +12,8 @@
     "declaration": true /* Generates corresponding '.d.ts' file. */,
     "sourceMap": true /* Generates corresponding '.map' file. */,
     "declarationMap": false /* Generates a sourcemap for each corresponding '.d.ts' file. */,
-    // "outDir": "./",                        /* Redirect output structure to the directory. */
-    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "outDir": "./" /* Redirect output structure to the directory. */,
+    // "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     // "composite": true,                        /* Enable project compilation */
     // "incremental": true,                   /* Enable incremental compilation */
     // "tsBuildInfoFile": ".tsbuildinfo",     /* Specify file to store incremental compilation information */
@@ -85,6 +85,8 @@
     ]
   },
 
-  "include": ["src/**/*.ts"] /* Specifies a list of glob patterns that match files to be included in compilation. */,
+  "include": [
+    "packages/**/src/**/*.ts"
+  ] /* Specifies a list of glob patterns that match files to be included in compilation. */,
   "exclude": [] /* Specifies a list of files to be excluded from compilation. */
 }
