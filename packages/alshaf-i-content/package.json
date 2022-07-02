@@ -4,7 +4,6 @@
   "description": "Alshaf-i PWA content",
   "author": "MohammadMahdi Zamanian <mm25zamanian@gmail.com> (https://mm25zamanian.ir)",
   "contributes": [
-    "MohammadMahdi Zamanian <mm25zamanian@gmail.com> (https://mm25zamanian.ir)",
     "Amir Najafi <njfamirm@gmail.com>"
   ],
   "type": "module",
@@ -24,7 +23,6 @@
     "format:prettier": "prettier \"src/**/*.{html,json,md,ts}\" --config ../../.prettierrc.json --ignore-path ../../.eslintignore --write",
     "clean": "yarn build:ts --clean && rm -rf dist && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
     "serve:dev": "web-dev-server --config dev-server.mjs",
-    "serve:dist": "web-dev-server --config dev-server-dist.mjs",
     "watch": "npm-run-all --print-label --parallel watch:* serve:dev",
     "watch:ts": "yarn build:ts --watch --preserveWatchOutput"
   },
