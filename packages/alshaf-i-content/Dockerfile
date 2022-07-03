@@ -1,7 +1,6 @@
-FROM nginx:1-alpine
+FROM nginx:stable-alpine-perl
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /static/
 
-COPY dist/ .
-
-RUN ls -lAhF
+COPY nginx.conf /etc/nginx
+ADD ./static ./
