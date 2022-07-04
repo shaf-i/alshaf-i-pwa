@@ -27,10 +27,10 @@
     "watch:ts": "yarn build:ts --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@alwatr/fetch": "^0.9.0",
-    "@alwatr/logger": "^0.9.0",
-    "@alwatr/router": "^0.9.0",
-    "@alwatr/signal": "^0.9.0",
+    "@alwatr/fetch": "^0.11.0",
+    "@alwatr/logger": "^0.11.0",
+    "@alwatr/router": "^0.11.0",
+    "@alwatr/signal": "^0.11.0",
     "@material/mwc-ripple": "^0.26.1",
     "lit": "^2.2.1",
     "tslib": "^2.3.1"
