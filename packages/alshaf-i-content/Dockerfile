@@ -1,6 +1,6 @@
 FROM nginx:stable-alpine-perl
 
-WORKDIR /static/
+WORKDIR /www/data/
 
 COPY nginx.conf /etc/nginx
 ADD ./static ./

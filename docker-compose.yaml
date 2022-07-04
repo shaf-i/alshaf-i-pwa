@@ -19,6 +19,5 @@ services:
       dockerfile: Dockerfile
     restart: always
     labels:
-      - traefik.http.routers.nginx.rule=Host(`shafi.content.localhost`)
+      - traefik.http.routers.nginx.rule=Host(`shafi.localhost`)
       - traefik.http.services.nginx.loadbalancer.server.port=80
-      - traefik.docker.network=sunglasses-network
