@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  reverse-proxy:
+    image: traefik:v2.6
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=false
+
+  nginx:
+    image: shaf-i-content
+    build:
+      context: packages/alshaf-i-content
+      dockerfile: Dockerfile
+    restart: always
+    labels:
+      - traefik.http.routers.nginx.rule=Host(`shafi.localhost`)
+      - traefik.http.services.nginx.loadbalancer.server.port=80
