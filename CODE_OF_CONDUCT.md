@@ -1,4 +1,3 @@
-# Contributor Code of Conduct
 
 As contributors and maintainers of the Alshaf-i projects, we pledge to respect everyone who contributes by posting issues, updating documentation, submitting pull requests, providing feedback in comments, and any other activities.
 
