@@ -99,11 +99,7 @@ export const style = {
  * const logger = createLogger('logger/demo');
  * ```
  */
-export const createLogger = (
-    scope: string,
-    color: string = getNextColor(),
-    debug = getDebugState(scope),
-): Logger => {
+export const createLogger = (scope: string, color: string = getNextColor(), debug = getDebugState(scope)): Logger => {
   scope = scope.trim();
 
   const first = scope.charAt(0);
@@ -124,13 +120,7 @@ export const createLogger = (
     color,
     scope,
 
-    accident: console.warn.bind(
-        console,
-        '%c%s%c.%s => Accident: "%s" (%s)!',
-        styleScope,
-        scope,
-        style.reset,
-    ),
+    accident: console.warn.bind(console, '%c%s%c.%s => Accident: "%s" (%s)!', styleScope, scope, style.reset),
 
     error: console.error.bind(console, '%c%s%c.%s "%s" =>', styleScope, scope, style.reset),
   };
@@ -157,21 +147,9 @@ export const createLogger = (
 
     logMethodArgs: console.debug.bind(console, '%c%s%c.%s(%o);', styleScope, scope, style.reset),
 
-    logMethodFull: console.debug.bind(
-        console,
-        '%c%s%c.%s(%o); // %o',
-        styleScope,
-        scope,
-        style.reset,
-    ),
+    logMethodFull: console.debug.bind(console, '%c%s%c.%s(%o); // %o', styleScope, scope, style.reset),
 
-    incident: console.trace.bind(
-        console,
-        '%c%s%c.%s() => Incident: "%s" (%s)!',
-        styleScope,
-        scope,
-        style.reset,
-    ),
+    incident: console.trace.bind(console, '%c%s%c.%s() => Incident: "%s" (%s)!', styleScope, scope, style.reset),
 
     logOther: console.debug.bind(console, '%c%s', styleScope, scope),
   };

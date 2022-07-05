@@ -20,15 +20,10 @@ export class AlwatrMicroServer {
     this.server = createServer(this.handleRequest.bind(this));
 
     this.server.on('error', (err: NodeJS.ErrnoException) => {
-      this.logger.accident(
-          'server.onError',
-          'http_server_catch_error',
-          'HTTP server catch an error',
-          {
-            errCode: err.code,
-            errMessage: err.message,
-          },
-      );
+      this.logger.accident('server.onError', 'http_server_catch_error', 'HTTP server catch an error', {
+        errCode: err.code,
+        errMessage: err.message,
+      });
 
       if (err.code === 'EADDRINUSE') {
         this.logger.logOther('Address in use, retrying...');
@@ -40,15 +35,10 @@ export class AlwatrMicroServer {
     });
 
     this.server.on('clientError', (err: NodeJS.ErrnoException, socket) => {
-      this.logger.accident(
-          'server.clientError',
-          'http_server_catch_client_error',
-          'HTTP server catch a client error',
-          {
-            errCode: err.code,
-            errMessage: err.message,
-          },
-      );
+      this.logger.accident('server.clientError', 'http_server_catch_client_error', 'HTTP server catch a client error', {
+        errCode: err.code,
+        errMessage: err.message,
+      });
       socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
     });
 
@@ -77,17 +67,10 @@ export class AlwatrMicroServer {
     all: {},
   };
 
-  protected async handleRequest(
-      incomingMessage: IncomingMessage,
-      serverResponse: ServerResponse,
-  ): Promise<void> {
+  protected async handleRequest(incomingMessage: IncomingMessage, serverResponse: ServerResponse): Promise<void> {
     this.logger.logMethod('handleRequest');
     if (incomingMessage.url == null) {
-      this.logger.accident(
-          'handleRequest',
-          'http_server_url_undefined',
-          'incomingMessage.url is undefined',
-      );
+      this.logger.accident('handleRequest', 'http_server_url_undefined', 'incomingMessage.url is undefined');
       return;
     }
 
