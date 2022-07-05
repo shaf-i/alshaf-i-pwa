@@ -21,7 +21,7 @@
     "format": "npm-run-all --sequential format:prettier format:eslint",
     "format:eslint": "eslint 'src/**/*.ts' -c ../../.eslintrc.yaml --ignore-path ../../.eslintignore --fix",
     "format:prettier": "prettier \"src/**/*.{html,json,md,ts}\" --config ../../.prettierrc.json --ignore-path ../../.eslintignore --write",
-    "clean": "yarn build:ts --clean && rm -rf dist && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
+    "clean": "yarn build:ts --clean && rm -rf dist static && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
     "serve:dev": "web-dev-server --config dev-server.mjs",
     "watch": "npm-run-all --print-label --parallel watch:* serve:dev",
     "watch:ts": "yarn build:ts --watch --preserveWatchOutput"

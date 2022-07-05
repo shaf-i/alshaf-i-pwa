@@ -1,7 +1,7 @@
 {
   "name": "alshaf-i-pwa-api-server",
   "version": "0.0.0",
-  "description": "Alshaf-i PWA api server",
+  "description": "Alshaf-i PWA API server",
   "author": "Amir Najafi <njfamirm@gmail.com>",
   "type": "module",
   "license": "MIT",
