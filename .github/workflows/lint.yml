@@ -3,12 +3,16 @@ name: Lint
 on:
   pull_request:
     paths:
-      - "**/*.{ts,md,html,json}"
-      - "*.{md,json}"
+      - "**/**.ts"
+      - "**/**.md"
+      - "**/**.html"
+      - "**/**.json"
   push:
     paths:
-      - "**/*.{ts,md,html,json}"
-      - "*.{md,json}"
+      - "**/**.ts"
+      - "**/**.md"
+      - "**/**.html"
+      - "**/**.json"
     branches:
       - next
       - main
