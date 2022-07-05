@@ -3,14 +3,14 @@ name: Build
 on:
   pull_request:
     paths:
-    - "**/**.ts"
+      - "**/**.ts"
   push:
     paths:
-    - "**/**.ts"
+      - "**/**.ts"
     branches:
-    - next
-    - main
-    - release/*
+      - next
+      - main
+      - release/*
 
 env:
   NODE_VERSION: '16.x'
