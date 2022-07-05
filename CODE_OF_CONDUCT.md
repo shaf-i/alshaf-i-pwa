@@ -1,4 +1,3 @@
-Communication through any of Alshaf-i channels (GitHub, Telegram, Twitter, etc.) must be constructive and never resort to personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.
 
 We promise to extend courtesy and respect to everyone involved in this project regardless of gender, gender identity, sexual orientation, disability, age, race, ethnicity, religion, or level of experience. We expect anyone contributing to the Alshaf-i projects to do the same.
 
