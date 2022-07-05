@@ -14,7 +14,7 @@ import type {TemplateResult} from 'lit';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'app-index': AppIndex;
+    'adpp-index': AppIndex;
   }
 }
 
