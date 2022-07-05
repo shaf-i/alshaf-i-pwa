@@ -5,7 +5,7 @@ import {customElement} from 'lit/decorators/custom-element.js';
 import {AppElement} from './app-debt/app-element';
 
 import './pages/page-home';
-import './pages/page-about';
+
 
 import type {RoutesConfig} from '@alwatr/router';
 import type {ListenerInterface} from '@alwatr/signal';
