@@ -21,3 +21,20 @@ services:
     labels:
       - traefik.http.routers.nginx.rule=Host(`shafi.localhost`)
       - traefik.http.services.nginx.loadbalancer.server.port=80
+      - traefik.docker.network=shaf-i-network
+
+  api-server:
+    image: shaf-i-api-server
+    build:
+      context: packages/alshaf-i-api-server
+      dockerfile: Dockerfile
+    restart: always
+    labels:
+      - traefik.http.routers.api-server.rule=Host(`api.shafi.localhost`)
+      - traefik.http.services.api-server.loadbalancer.server.port=80
+      - traefik.docker.network=shaf-i-network
+
+
+networks:
+  shaf-i-network:
+    external : true
