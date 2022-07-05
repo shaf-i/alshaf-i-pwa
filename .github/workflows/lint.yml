@@ -3,6 +3,7 @@ name: Lint
 on:
   pull_request:
     paths:
+      - "**/**.ts"
       - "**/**.md"
       - "**/**.html"
       - "**/**.json"
