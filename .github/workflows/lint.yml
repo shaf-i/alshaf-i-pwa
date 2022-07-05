@@ -3,19 +3,19 @@ name: Lint
 on:
   pull_request:
     paths:
-    - "**/**.md"
-    - "**/**.html"
-    - "**/**.json"
+      - "**/**.md"
+      - "**/**.html"
+      - "**/**.json"
   push:
     paths:
-    - "**/**.ts"
-    - "**/**.md"
-    - "**/**.html"
-    - "**/**.json"
+      - "**/**.ts"
+      - "**/**.md"
+      - "**/**.html"
+      - "**/**.json"
     branches:
-    - next
-    - main
-    - release/*
+      - next
+      - main
+      - release/*
 
 env:
   NODE_VERSION: '16.x'
