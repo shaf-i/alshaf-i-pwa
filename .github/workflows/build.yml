@@ -2,11 +2,7 @@ name: Build
 
 on:
   pull_request:
-    paths:
-      - "packages/**/*.ts"
   push:
-    paths:
-      - "packages/**/*.ts"
     branches:
       - next
       - main

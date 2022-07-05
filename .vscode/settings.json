@@ -15,5 +15,8 @@
     "src/**/*.js": true,
     "src/**/*.d.ts": true,
     "src/**/*.tsbuildinfo": true
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///home/njfamirm/project/typescript/alshaf-i-pwa/.github/workflows/build.yml"
   }
 }
