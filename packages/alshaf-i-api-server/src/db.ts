@@ -1,6 +1,5 @@
 import {writeJsonFile, readJsonFile} from './@alwatr/data-storage/src/data-storage.js';
 import {jsonFilePath} from './config.js';
-import {User} from './type.js';
 
 export async function addUserToDB(user: object): Promise<boolean> {
   let userList = await getUserList();
@@ -10,7 +9,7 @@ export async function addUserToDB(user: object): Promise<boolean> {
 }
 
 // return true if user exists in DB
-export async function checkUserExists(user: User): Promise<boolean> {
+export async function checkUserExists(user: object): Promise<boolean> {
   const userList = await getUserList();
   if (Object.keys(user)[0] in userList) {
     return true;
