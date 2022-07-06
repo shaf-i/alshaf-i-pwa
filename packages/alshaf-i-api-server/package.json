@@ -18,13 +18,14 @@
     "format:eslint": "eslint 'src/**/*.ts' -c ../../.eslintrc.yaml --ignore-path ../../.eslintignore --fix",
     "format:prettier": "prettier \"src/**/*.{html,json,md,ts}\" --config ../../.prettierrc.json --ignore-path ../../.eslintignore --write",
     "clean": "yarn build --clean && rm -rf dist && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
-    "watch":"npm-run-all --parallel watch:ts watch:serve",
+    "watch": "npm-run-all --parallel watch:ts watch:serve",
     "watch:ts": "yarn build --watch --preserveWatchOutput",
     "watch:serve": "nodemon dist/index.js"
   },
   "dependencies": {
     "@alwatr/logger": "^0.11.0",
     "@types/node": "^18.0.1",
+    "dotenv": "^16.0.1",
     "tslib": "^2.4.0"
   },
   "devDependencies": {

@@ -1,9 +1,9 @@
 import {AlwatrMicroServer} from './@alwatr/micro-server/src/micro-server.js';
+import {allowOriginHost, port} from './config.js';
 
-export const app = new AlwatrMicroServer(8080, undefined, {
+export const app = new AlwatrMicroServer(port, undefined, {
   corsHelper: {
-    allowOrigin: '*', // "http://shafi.localhost" for production
+    allowOrigin: allowOriginHost,
     allowMethods: '*',
-    maxAge: 5 * 60, // 5 Minute
   },
 });
