@@ -15,6 +15,7 @@ Desktop.ini
 
 # Build
 packages/**/dist
+packages/**/build
 packages/**/static
 packages/**/.tsbuildinfo
 packages/**/src/**/*.js
