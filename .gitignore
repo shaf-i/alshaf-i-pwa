@@ -15,6 +15,7 @@ Desktop.ini
 
 # Build
 packages/**/dist
+packages/**/build
 packages/**/static
 packages/**/.tsbuildinfo
 packages/**/src/**/*.js
@@ -25,5 +26,8 @@ packages/**/src/**/*.d.ts
 **/node_modules
 **/package-lock.json
 
-# lerna
+# Lerna
 **/*.lerna_backup
+
+# Data
+packages/alshaf-i-api-server/data/*.json

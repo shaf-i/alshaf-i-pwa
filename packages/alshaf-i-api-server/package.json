@@ -1,0 +1,46 @@
+{
+  "name": "alshaf-i-pwa-api-server",
+  "version": "0.0.0",
+  "description": "Alshaf-i PWA API server",
+  "author": "Amir Najafi <njfamirm@gmail.com>",
+  "type": "commonjs",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "f": "yarn format",
+    "b": "yarn build",
+    "cb": "npm-run-all --sequential clean build",
+    "s": "yarn serve",
+    "w": "yarn watch",
+    "build": "yarn build:ts",
+    "build:production": "npm-run-all --sequential build:ts build:es",
+    "build:ts": "tsc --build --pretty",
+    "build:es": "rollup -c",
+    "serve": "node dist/index.js",
+    "format": "npm-run-all --sequential format:prettier format:eslint",
+    "format:eslint": "eslint 'src/**/*.ts' -c ../../.eslintrc.yaml --ignore-path ../../.eslintignore --fix",
+    "format:prettier": "prettier \"src/**/*.{html,json,md,ts}\" --config ../../.prettierrc.json --ignore-path ../../.eslintignore --write",
+    "clean": "yarn build --clean && rm -rf dist && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
+    "watch": "npm-run-all --parallel watch:ts watch:serve",
+    "watch:ts": "yarn build --watch --preserveWatchOutput",
+    "watch:serve": "nodemon dist/index.js"
+  },
+  "dependencies": {
+    "@alwatr/logger": "^0.11.0",
+    "@types/node": "^18.0.1",
+    "dotenv": "^16.0.1",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@web/rollup-plugin-copy": "^0.3.0",
+    "eslint": "^8.19.0",
+    "nodemon": "^2.0.18",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "rollup": "^2.75.7",
+    "rollup-plugin-summary": "^1.4.3",
+    "typescript": "^4.5.5"
+  }
+}
