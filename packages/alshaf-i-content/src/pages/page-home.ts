@@ -41,8 +41,6 @@ export class PageHome extends AppElement {
   }
 
   override render(): TemplateResult {
-    return html`
-      <h1>صفحه خانه</h1>
-    `;
+    return html` <h1>صفحه خانه</h1> `;
   }
 }
