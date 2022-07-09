@@ -1,4 +1,5 @@
 import {app} from '../app.js';
+import {apiToken} from '../config.js';
 import {addUserToDB, checkUserExists} from '../db.js';
 import {checkPhoneNumber} from '../utils/checkPhoneNumber.js';
 
@@ -13,6 +14,19 @@ async function addUserRoute(connection: AlwatrConnection): Promise<void> {
   const params = new URLSearchParams(connection.url.search);
   const phoneNumber: string | null = params.get('phoneNumber');
   const name: string | null = params.get('name');
+  const token: string | null = params.get('token');
+
+  if (token !== apiToken) {
+    connection.reply({
+      ok: false,
+      statusCode: 403,
+      errorCode: 'AUTHENTICATION_FAILED',
+      data: {
+        app: 'Alshaf-i API [adduser]',
+        message: 'Authentication failed',
+      },
+    });
+  }
 
   if (!(phoneNumber !== null && checkPhoneNumber(phoneNumber) && name !== null)) {
     connection.reply({
