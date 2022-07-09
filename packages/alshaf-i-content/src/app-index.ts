@@ -30,6 +30,7 @@ export class AppIndex extends AppElement {
     :host {
       display: flex;
       flex-direction: column;
+      height: 100vh;
     }
 
     .page-container {
@@ -37,6 +38,7 @@ export class AppIndex extends AppElement {
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: 0%;
+      height: 100%;
     }
   `;
 

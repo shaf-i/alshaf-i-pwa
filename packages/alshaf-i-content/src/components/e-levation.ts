@@ -25,12 +25,18 @@ declare global {
 @customElement('e-levation')
 export class Elevation extends AppElement {
   static override styles = css`
+    * {
+      box-sizing: border-box;
+    }
     :host {
       display: flex;
       flex-direction: column;
-      padding: var(--padding, 16px);
+      padding: var(--padding, 16px 0);
     }
     section {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       border-radius: var(--border-radius, 12px);
       box-shadow: var(--box-shadow, 0 0 var(--padding, 16px) 0 #0002);
       padding: var(--padding, 12px);
