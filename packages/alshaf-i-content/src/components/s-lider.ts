@@ -35,11 +35,14 @@ declare global {
 @customElement('s-lider')
 export class Slider extends AppElement {
   static override styles = css`
+    * {
+      box-sizing: border-box;
+    }
     :host {
       display: flex;
       width: 100%;
-      box-sizing: border-box;
       overflow: hidden;
+      box-sizing: border-box;
 
       --base-color: var(--primary-color);
       --base-color-contrast: var(--primary-color-contrast);
@@ -79,15 +82,25 @@ export class Slider extends AppElement {
     return sliderStyles;
   }
 
-  protected override update(changedProperties: PropertyValues): void {
+  protected override updated(changedProperties: PropertyValues): void {
+    super.updated(changedProperties);
+
     if (changedProperties.has('fullscreen')) {
       if (this.slides.length) {
         for (const slide of this.slides) {
           slide.fullscreen = this.fullscreen;
         }
       } else {
-        this._logger.error('update', 'update_fullscreen', 'The slider must have at least two children');
+        this._logger.accident('update', 'update_fullscreen', 'The slider must have at least two children');
       }
+    }
+
+    if (changedProperties.has('activeSlide') && this.slides[this.activeSlide - 1]) {
+      for (const slide of this.slides) {
+        slide.active = false;
+      }
+
+      this.slides[this.activeSlide - 1].active = true;
     }
   }
 }
@@ -101,13 +114,18 @@ export class Slider extends AppElement {
 @customElement('s-lide')
 export class Slide extends AppElement {
   static override styles = css`
+    * {
+      box-sizing: border-box;
+    }
     :host {
       display: flex;
-      box-sizing: border-box;
       height: 100%;
       width: 90%;
       flex-shrink: 0;
       padding: var(--gap, 24px 6px);
+      transform: scaleY(85%);
+      transition: var(--duration, 300ms);
+      box-sizing: border-box;
 
       --base-color: var(--primary-color);
       --base-color-contrast: var(--primary-color-contrast);
@@ -115,9 +133,13 @@ export class Slide extends AppElement {
     :host([fullscreen]) {
       width: 100%;
     }
+    :host([active]) {
+      transform: scaleY(100%);
+    }
   `;
 
-  @property({type: Boolean}) fullscreen = false;
+  @property({type: Boolean, reflect: true}) fullscreen = false;
+  @property({type: Boolean, reflect: true}) active = false;
 
   override render(): TemplateResult {
     return html` <slot></slot> `;
