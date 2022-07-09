@@ -31,7 +31,7 @@
     "@alwatr/logger": "^0.11.0",
     "@alwatr/router": "^0.11.0",
     "@alwatr/signal": "^0.11.0",
-    "@material/mwc-ripple": "^0.26.1",
+    "@shoelace-style/localize": "^3.0.0",
     "lit": "^2.2.1",
     "tslib": "^2.3.1"
   },
