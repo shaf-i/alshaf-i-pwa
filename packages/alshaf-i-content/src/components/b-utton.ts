@@ -1,15 +1,10 @@
-import {RippleHandlers} from '@material/mwc-ripple/ripple-handlers.js';
-import {css, html, nothing} from 'lit';
+import {css, html} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
-import {eventOptions} from 'lit/decorators/event-options.js';
 import {property} from 'lit/decorators/property.js';
-import {queryAsync} from 'lit/decorators/query-async.js';
-import {state} from 'lit/decorators/state.js';
-import '@material/mwc-ripple';
+import {classMap} from 'lit/directives/class-map.js';
 
 import {AppElement} from '../app-debt/app-element';
 
-import type {Ripple} from '@material/mwc-ripple';
 import type {TemplateResult} from 'lit';
 
 declare global {
@@ -26,83 +21,117 @@ declare global {
  */
 @customElement('b-utton')
 export class Button extends AppElement {
-  static override styles = css`
-    :host {
-      display: inline-flex;
-      width: max-content;
-      box-sizing: border-box;
-      padding: var(--gap, 4px 8px 12px);
-      overflow: hidden;
+  static override styles = [
+    css`
+      :host {
+        display: inline-flex;
+        width: max-content;
+        box-sizing: border-box;
+        padding: var(--gap, 4px 8px 12px);
+        position: relative;
+        overflow: hidden;
 
-      --base-color: var(--primary-color);
-      --base-color-contrast: var(--primary-color-contrast);
-    }
+        --base-color: var(--primary-color);
+        --base-color-contrast: var(--primary-color-contrast);
+        --base-color-pulse: var(--base-color-contrast);
+      }
 
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      border: none;
-      position: relative;
-      overflow: hidden;
-      user-select: none;
-      cursor: pointer;
-      gap: 8px;
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        border: none;
+        user-select: none;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        gap: 8px;
 
-      background-color: var(--base-color);
-      color: var(--base-color-contrast);
-      font-size: var(--font-size, 18px);
-      font-weight: var(--font-weight, 700);
-      padding: var(--padding, 16px);
-      border-radius: var(--border-radius, 14px);
-    }
-  `;
+        color: var(--base-color-contrast);
+        font-size: var(--font-size, 18px);
+        font-weight: var(--font-weight, 700);
+        padding: var(--padding, 16px);
+        border-radius: var(--border-radius, 14px);
+      }
+      button .button-background {
+        display: flex;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--base-color);
+        opacity: var(--base-color-opacity, 1);
+      }
+      button .button-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+
+      button.primary {
+        color: var(--base-color);
+
+        --base-color-pulse: var(--base-color);
+        --base-color-opacity: 0.3;
+      }
+    `,
+    css`
+      .r-ipple {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0.3;
+        z-index: 3;
+        animation: pulsate 1024ms ease;
+      }
+      @keyframes pulsate {
+        0% {
+          box-shadow: 0 0 0 var(--base-color-pulse);
+        }
+        100% {
+          box-shadow: 0 0 0 100vmin #0000;
+        }
+      }
+    `,
+  ];
 
   @property({type: Boolean, reflect: true}) disabled = false;
-  @queryAsync('mwc-ripple') ripple!: Promise<Ripple | null>;
-  @state() protected shouldRenderRipple = false;
+  @property({type: Boolean, reflect: true}) primary = false;
 
   override render(): TemplateResult {
     return html`
-      <button
-        @mousedown="${this.handleRippleActivate}"
-        @touchend="${this.handleRippleDeactivate}"
-        @touchcancel="${this.handleRippleDeactivate}"
-        type="button"
-      >
-        ${this.renderRippleTemplate()}
-        <slot name="start"></slot>
-        <slot></slot>
-        <slot name="end"></slot>
+      <button class=${classMap({primary: this.primary})} type="button">
+        <div class="button-background"></div>
+        <div class="button-content">
+          <slot name="start"></slot>
+          <slot></slot>
+          <slot name="end"></slot>
+        </div>
       </button>
     `;
   }
+  protected override firstUpdated(): void {
+    this.addEventListener('click', (event: MouseEvent) => {
+      const rect = this.getBoundingClientRect();
+      console.log(rect);
 
-  protected rippleHandlers = new RippleHandlers(() => {
-    this.shouldRenderRipple = true;
-    return this.ripple;
-  });
+      const positionRipple = {
+        y: (100 / rect.height) * (event.y - rect.y),
+        x: (100 / rect.width) * (event.x - rect.x),
+      };
 
-  protected renderRippleTemplate(): TemplateResult | typeof nothing {
-    if (!this.shouldRenderRipple) return nothing;
+      const ripple = document.createElement('div');
+      ripple.className = 'r-ipple';
+      ripple.style.left = positionRipple.x + '%';
+      ripple.style.top = positionRipple.y + '%';
 
-    return html`<mwc-ripple ?disabled="${this.disabled}"></mwc-ripple>`;
-  }
+      this.renderRoot.appendChild(ripple);
 
-  @eventOptions({passive: true})
-  protected handleRippleActivate(evt?: Event): void {
-    const onUp = (): void => {
-      window.removeEventListener('mouseup', onUp);
-
-      this.handleRippleDeactivate();
-    };
-
-    window.addEventListener('mouseup', onUp);
-    this.rippleHandlers.startPress(evt);
-  }
-
-  protected handleRippleDeactivate(): void {
-    this.rippleHandlers.endPress();
+      setTimeout(() => {
+        ripple.remove();
+      }, 1024);
+    });
   }
 }

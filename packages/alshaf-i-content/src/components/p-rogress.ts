@@ -26,7 +26,7 @@ export class Progress extends AppElement {
       display: inline-flex;
       width: 100%;
       box-sizing: border-box;
-      padding: var(--gap, 4px 8px 12px);
+      padding: var(--gap, 4px 16px 12px);
 
       --base-color: var(--primary-color);
       --base-color-contrast: var(--primary-color-contrast);

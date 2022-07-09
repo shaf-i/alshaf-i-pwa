@@ -25,6 +25,9 @@ export class PageAbout extends AppElement {
     :host {
       display: flex;
       flex-direction: column;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
   `;
 

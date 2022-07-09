@@ -3,6 +3,8 @@ import {customElement} from 'lit/decorators/custom-element.js';
 
 import {AppElement} from '../app-debt/app-element';
 
+import './page-content-cards';
+
 import type {ListenerInterface} from '@alwatr/signal';
 import type {TemplateResult} from 'lit';
 
@@ -25,6 +27,9 @@ export class PageHome extends AppElement {
     :host {
       display: flex;
       flex-direction: column;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
   `;
 
@@ -41,6 +46,6 @@ export class PageHome extends AppElement {
   }
 
   override render(): TemplateResult {
-    return html` <h1>صفحه خانه</h1> `;
+    return html` <page-content-cards class="page"></page-content-cards> `;
   }
 }
