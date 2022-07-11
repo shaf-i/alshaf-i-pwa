@@ -143,19 +143,19 @@ export class PageContentCards extends AppElement {
     }
   }
 
-  protected _renderSlider(): any {
-    const cardsTemplate = this._data.map((card: sliderData) => this._renderCard(card.id, card.text, card.imageSource));
+  protected _renderSlider(): TemplateResult {
+    const cardsTemplate = this._data.map((card: sliderData) => this._renderCard(card.text, card.imageSource));
     return html` <s-lider activeSlide=${this._activeSlideIndex}>${cardsTemplate}</s-lider> `;
   }
-  protected _renderCard(id: number, text: string, imageSource: string): TemplateResult | typeof nothing {
+  protected _renderCard(text: string, imageSource: string): TemplateResult | typeof nothing {
     if (!text || !imageSource) {
       return nothing;
     }
 
     const textTemplate = text
-      .trim()
-      .split('\n')
-      .map((paragraph) => html`<p>${paragraph}</p>`);
+        .trim()
+        .split('\n')
+        .map((paragraph) => html`<p>${paragraph}</p>`);
 
     return html`
       <s-lide>
