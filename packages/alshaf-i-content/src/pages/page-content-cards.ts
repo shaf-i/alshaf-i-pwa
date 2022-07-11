@@ -1,10 +1,11 @@
+import {getJson} from '@alwatr/fetch';
 import {LocalizeController, registerTranslation} from '@shoelace-style/localize/dist/index.js';
 import {css, html, nothing} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
 import {styleMap} from 'lit/directives/style-map.js';
 
 import {AppElement} from '../app-debt/app-element';
-import {fakeData} from '../config';
+import {data, sliderData} from '../type';
 
 import '../components/b-utton';
 import '../components/e-levation';
@@ -64,7 +65,7 @@ export class PageContentCards extends AppElement {
       .card .card__text p {
         margin: 0.35rem 0 0;
         color: #454545;
-        font-size: 0.85rem;
+        font-size: 1.2rem;
         // font-weight: 100;
       }
       .card .card__image-seprator {
@@ -98,7 +99,13 @@ export class PageContentCards extends AppElement {
     `,
   ];
 
-  protected _data = fakeData.content;
+  protected _data: data = [
+    {
+      id: 0,
+      text: `s`,
+      imageSource: '/images/photo.jpg',
+    },
+  ];
   protected _activeSlideIndex = 1;
   protected _localize = new LocalizeController(this);
   protected _listenerList: Array<unknown> = [];
@@ -106,6 +113,7 @@ export class PageContentCards extends AppElement {
   override connectedCallback(): void {
     super.connectedCallback();
     registerTranslation();
+    this._getData();
     // this._listenerList.push(router.signal.addListener(() => this.requestUpdate()));
   }
 
@@ -118,18 +126,36 @@ export class PageContentCards extends AppElement {
     return html`${this._renderSlider()} ${this._renderProgressBar()} ${this._renderButtons()}`;
   }
 
-  protected _renderSlider(): TemplateResult {
-    const cardsTemplate = this._data.map((card) => this._renderCard(card.id, card.text, card.imageSource));
+  protected async _getData(): Promise<void> {
+    try {
+      const data = await getJson('/data/ghadir.json');
+      this._data = data.content as data;
+      this.requestUpdate();
+    } catch {
+      this._data = [
+        {
+          id: 0,
+          text: `Error in loading data...`,
+          imageSource: '/images/photo.jpg',
+        },
+      ];
+      this.requestUpdate();
+    }
+  }
 
+  protected _renderSlider(): any {
+    const cardsTemplate = this._data.map((card: sliderData) => this._renderCard(card.id, card.text, card.imageSource));
     return html` <s-lider activeSlide=${this._activeSlideIndex}>${cardsTemplate}</s-lider> `;
   }
-  protected _renderCard(id: string, text: string, imageSource: string): TemplateResult | typeof nothing {
-    if (!id || !text || !imageSource) return nothing;
+  protected _renderCard(id: number, text: string, imageSource: string): TemplateResult | typeof nothing {
+    if (!text || !imageSource) {
+      return nothing;
+    }
 
     const textTemplate = text
-        .trim()
-        .split('\n')
-        .map((paragraph) => html`<p>${paragraph}</p>`);
+      .trim()
+      .split('\n')
+      .map((paragraph) => html`<p>${paragraph}</p>`);
 
     return html`
       <s-lide>
