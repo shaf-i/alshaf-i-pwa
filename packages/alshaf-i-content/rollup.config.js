@@ -76,7 +76,7 @@ export default {
     summary({showMinifiedSize: false}), // Print bundle summary
 
     copy({
-      patterns: ['images/**/*', 'robots.txt'],
+      patterns: ['images/**/*', 'robots.txt', 'data/**/*'],
     }),
   ],
 
