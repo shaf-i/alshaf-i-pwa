@@ -52,7 +52,7 @@ export class Button extends AppElement {
         font-size: var(--font-size, 18px);
         font-weight: var(--font-weight, 700);
         padding: var(--padding, 16px);
-        border-radius: var(--border-radius, 14px);
+        border-radius: var(--border-radius, 12px);
       }
       button .button-background {
         display: flex;

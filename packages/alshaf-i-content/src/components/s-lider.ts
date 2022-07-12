@@ -40,6 +40,7 @@ export class Slider extends AppElement {
     }
     :host {
       display: flex;
+      flex-grow: 1;
       width: 100%;
       overflow: hidden;
       box-sizing: border-box;
