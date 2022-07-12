@@ -102,8 +102,7 @@ export class PageContentCards extends AppElement {
   protected _data: data = [
     {
       id: 0,
-      text: `s`,
-      imageSource: '/images/photo.jpg',
+      text: `Loading`
     },
   ];
   protected _activeSlideIndex = 1;
@@ -135,8 +134,7 @@ export class PageContentCards extends AppElement {
       this._data = [
         {
           id: 0,
-          text: `Error in loading data...`,
-          imageSource: '/images/photo.jpg',
+          text: `Error in loading data...`
         },
       ];
       this.requestUpdate();
@@ -147,8 +145,8 @@ export class PageContentCards extends AppElement {
     const cardsTemplate = this._data.map((card: sliderData) => this._renderCard(card.text, card.imageSource));
     return html` <s-lider activeSlide=${this._activeSlideIndex}>${cardsTemplate}</s-lider> `;
   }
-  protected _renderCard(text: string, imageSource: string): TemplateResult | typeof nothing {
-    if (!text || !imageSource) {
+  protected _renderCard(text: string, imageSource: string | undefined): TemplateResult | typeof nothing {
+    if (!text) {
       return nothing;
     }
 
@@ -163,12 +161,20 @@ export class PageContentCards extends AppElement {
           <div class="card__text-seprator"></div>
           <div class="card__text">${textTemplate}</div>
           <div class="card__image-seprator"></div>
-          <div class="card__image">
-            <img src=${imageSource} />
-          </div>
+          ${this._renderPhoto(imageSource)}
         </e-levation>
       </s-lide>
     `;
+  }
+  protected _renderPhoto(imageSource: string | undefined ): TemplateResult | typeof nothing{
+    if (imageSource !== undefined) {
+      return html`
+      <div class="card__image">
+        <img src=${imageSource} />
+      </div>
+      `
+    }
+    return nothing
   }
   protected _renderProgressBar(): TemplateResult {
     return html`
