@@ -53,7 +53,7 @@ export class PageContentCards extends AppElement {
         display: flex;
       }
       .card .card__text-seprator {
-        flex-grow: 4;
+        flex-grow: 1;
       }
       .card .card__text {
         padding: 4px 8px;
