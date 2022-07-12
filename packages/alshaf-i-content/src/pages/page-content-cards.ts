@@ -216,7 +216,7 @@ export class PageContentCards extends AppElement {
     }
   }
   perv(): void {
-    if (this._activeSlideIndex > 0) {
+    if (this._activeSlideIndex > 1) {
       this._activeSlideIndex--;
       this.requestUpdate();
     }
