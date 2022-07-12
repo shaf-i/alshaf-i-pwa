@@ -23,6 +23,9 @@ declare global {
 export class Button extends AppElement {
   static override styles = [
     css`
+    * {
+    font-family: var(--font-family);
+    }
       :host {
         display: inline-flex;
         width: max-content;
