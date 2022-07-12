@@ -81,7 +81,7 @@ export class PageContentCards extends AppElement {
     `,
     css`
       .p-rogress-text {
-        padding: 0 12px;
+        padding: 0 20px;
       }
     `,
     css`
@@ -91,7 +91,7 @@ export class PageContentCards extends AppElement {
       }
       .b-uttons b-utton {
         transition: width 300ms ease-in-out, opacity 300ms ease-in-out, margin-left 300ms ease-in-out;
-        --gap: 4px 0 12px;
+        --gap: 4px 0 16px;
       }
       .b-uttons b-utton.end {
         --base-color: var(--secondary-color);
@@ -193,7 +193,7 @@ export class PageContentCards extends AppElement {
       perv: {
         width: this._activeSlideIndex !== 1 ? '30%' : '0%',
         opacity: this._activeSlideIndex !== 1 ? '1' : '0',
-        marginLeft: this._activeSlideIndex !== 1 ? '12px' : '0',
+        marginLeft: this._activeSlideIndex !== 1 ? '16px' : '0',
       },
       end: {
         width: this._activeSlideIndex === this._data.length ? '70%' : '0%',

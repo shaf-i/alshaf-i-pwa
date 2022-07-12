@@ -27,7 +27,7 @@ export class Button extends AppElement {
         display: inline-flex;
         width: max-content;
         box-sizing: border-box;
-        padding: var(--gap, 4px 8px 12px);
+        padding: var(--gap, 4px 8px 16px);
         position: relative;
         overflow: hidden;
 

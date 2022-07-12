@@ -40,7 +40,7 @@ export class Elevation extends AppElement {
       height: 100%;
       border-radius: var(--border-radius, 12px);
       box-shadow: var(--box-shadow, 0 0 var(--padding, 16px) 0 #0002);
-      padding: var(--padding, 12px);
+      padding: var(--padding, 16px);
       background-color: var(--background, #fff);
     }
   `;
