@@ -29,6 +29,7 @@ export class Elevation extends AppElement {
       box-sizing: border-box;
     }
     :host {
+      width: 100%;
       display: flex;
       flex-direction: column;
       padding: var(--padding, 16px 0);

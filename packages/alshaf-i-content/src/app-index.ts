@@ -67,14 +67,14 @@ export class AppIndex extends AppElement {
   override connectedCallback(): void {
     super.connectedCallback();
     this._listenerList.push(
-        router.signal.addListener(
-            (route) => {
-              this._logger.logMethodArgs('routeChanged', {route});
-              this._activePage = route.sectionList[0]?.toString().trim() || 'home';
-              this.requestUpdate();
-            },
-            {receivePrevious: true},
-        ),
+      router.signal.addListener(
+        (route) => {
+          this._logger.logMethodArgs('routeChanged', {route});
+          this._activePage = route.sectionList[0]?.toString().trim() || 'home';
+          this.requestUpdate();
+        },
+        {receivePrevious: true}
+      )
     );
   }
 
