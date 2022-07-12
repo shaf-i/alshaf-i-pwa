@@ -122,7 +122,7 @@ export class PageContentCards extends AppElement {
   }
 
   override render(): TemplateResult {
-    return html`${this._renderSlider()} ${this._renderProgressBar()} ${this._renderButtons()}`;
+    return html`${this._renderSliderTemplate()} ${this._renderProgressBarTemplate()} ${this._renderButtonsTemplate()}`;
   }
 
   protected async _getData(): Promise<void> {
@@ -141,11 +141,11 @@ export class PageContentCards extends AppElement {
     }
   }
 
-  protected _renderSlider(): TemplateResult {
-    const cardsTemplate = this._data.map((card: sliderData) => this._renderCard(card.text, card.imageSource));
+  protected _renderSliderTemplate(): TemplateResult {
+    const cardsTemplate = this._data.map((card: sliderData) => this._renderCardTemplate(card.text, card.imageSource));
     return html` <s-lider activeSlide=${this._activeSlideIndex}>${cardsTemplate}</s-lider> `;
   }
-  protected _renderCard(text: string, imageSource: string | undefined): TemplateResult | typeof nothing {
+  protected _renderCardTemplate(text: string, imageSource: string | undefined): TemplateResult | typeof nothing {
     if (!text) {
       return nothing;
     }
@@ -161,12 +161,12 @@ export class PageContentCards extends AppElement {
           <div class="card__text-seprator"></div>
           <div class="card__text">${textTemplate}</div>
           <div class="card__image-seprator"></div>
-          ${this._renderPhoto(imageSource)}
+          ${this._renderImageTemplate(imageSource)}
         </e-levation>
       </s-lide>
     `;
   }
-  protected _renderPhoto(imageSource: string | undefined ): TemplateResult | typeof nothing{
+  protected _renderImageTemplate(imageSource: string | undefined ): TemplateResult | typeof nothing{
     if (imageSource !== undefined) {
       return html`
       <div class="card__image">
@@ -176,7 +176,7 @@ export class PageContentCards extends AppElement {
     }
     return nothing
   }
-  protected _renderProgressBar(): TemplateResult {
+  protected _renderProgressBarTemplate(): TemplateResult {
     return html`
       <span class="p-rogress-text">
         ${this._localize.number(this._data.length)} / ${this._localize.number(this._activeSlideIndex)}
@@ -184,7 +184,7 @@ export class PageContentCards extends AppElement {
       <p-rogress max=${this._data.length} min="1" progress=${this._activeSlideIndex}></p-rogress>
     `;
   }
-  protected _renderButtons(): TemplateResult {
+  protected _renderButtonsTemplate(): TemplateResult {
     const styles = {
       next: {
         width: this._activeSlideIndex === 1 ? '100%' : this._activeSlideIndex === this._data.length ? '0%' : '70%',
@@ -202,20 +202,20 @@ export class PageContentCards extends AppElement {
     };
     return html`
       <div class="b-uttons">
-        <b-utton style=${styleMap(styles.perv)} class="perv" @click=${this.perv} primary>قبلی</b-utton>
-        <b-utton style=${styleMap(styles.next)} class="next" @click=${this.next}>بعدی</b-utton>
+        <b-utton style=${styleMap(styles.perv)} class="perv" @click=${this.pervSlide} primary>قبلی</b-utton>
+        <b-utton style=${styleMap(styles.next)} class="next" @click=${this.nextSlide}>بعدی</b-utton>
         <b-utton style=${styleMap(styles.end)} class="end">پایان</b-utton>
       </div>
     `;
   }
 
-  next(): void {
+  nextSlide(): void {
     if (this._activeSlideIndex < this._data.length) {
       this._activeSlideIndex++;
       this.requestUpdate();
     }
   }
-  perv(): void {
+  pervSlide(): void {
     if (this._activeSlideIndex > 1) {
       this._activeSlideIndex--;
       this.requestUpdate();
