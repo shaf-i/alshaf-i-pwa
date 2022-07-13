@@ -12,6 +12,10 @@
 		}
 	},
 
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
