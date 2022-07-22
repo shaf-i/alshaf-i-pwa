@@ -208,6 +208,10 @@ body {
   padding: 0;
 }
 
+img {
+  user-select: none;
+}
+
 a {
   background-color: transparent;
   color: var(--color-primary, #3880ff);
